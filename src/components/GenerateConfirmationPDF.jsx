@@ -26,11 +26,12 @@ const generateBookingPDF = ({ firstname,  lastname,  email,  phone,  date,  time
     // 2. Add header
     doc.setFont("Montserrat-Regular");
     doc.setFontSize(18);
-    doc.text("Zackly-Rite Massage Therapy", 60, 20);
+    doc.text("Aura-Lee Massage Therapy", 60, 20);
     doc.setFont("PlayfairDisplay-Regular");
     doc.setFontSize(12);
-    doc.text("812 Park Ave, Esterhazy, Sk S0A 0X0", 60, 27);
-    doc.text("zacklyrite@sasktel.net | 306-745-9085", 60, 33);
+    doc.text("Prairie Sky Integrative Health", 60, 27);
+    doc.text("2146 Robinson St, Regina, Sk S4T 2P7", 60,33);
+    doc.text("aura-lee@auralee.ca | 306-745-9085", 60, 40);
 
     // 3. Add title
     doc.setFont("Montserrat-Regular");
@@ -55,7 +56,7 @@ const generateBookingPDF = ({ firstname,  lastname,  email,  phone,  date,  time
     doc.text("Thank you for booking with us. We look forward to seeing you!", 15, doc.lastAutoTable.finalY + 20);
 
     // 6. Save or open
-    doc.save("Zackly-Rite-Confirmation.pdf");
+    doc.save("Aura-Lee-Massage-Confirmation.pdf");
   };
 }
 export default generateBookingPDF;

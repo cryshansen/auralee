@@ -10,7 +10,7 @@ export default function Footer() {
         <ul style={{ listStyle: 'none', paddingLeft: 0, paddingRight: 0 }}>
           <li>Prairie Sky Integrative Health, <br /> 2146 Robinson St, <br />Regina, Sk S4T 2P7</li>
           <li><i className="fas fa-phone-alt"></i> 306 745-9085</li>
-          <li><i className="fas fa-envelope"></i> aura.zack@gmail.com</li>
+          <li><i className="fas fa-envelope"></i> aura-lee@auralee.ca</li>
         </ul>
       </div>
 

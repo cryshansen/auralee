@@ -65,7 +65,7 @@ export default function ContactModal() {
 
     try {
       const res = await fetch(
-        "https://zackly-rite.ca/api/index-contact.php/contact/send",
+        "/api/contact/send",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

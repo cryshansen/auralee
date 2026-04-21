@@ -40,7 +40,7 @@ export default function BookingConfirmation() {
         </div>
       <hr />
       
-      <h4 className="text-center">Zackly-Rite Massage Therapy</h4>
+      <h4 className="text-center">Aura-Lee Massage Therapy</h4>
       
 
       <div className="row justify-content-center my-4">

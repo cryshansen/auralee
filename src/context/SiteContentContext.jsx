@@ -11,7 +11,7 @@ const DEFAULT = {
   },
   contact: {
     phone: "306 745-9085",
-    email: "aura.zack@gmail.com",
+    email: "aura-lee@auralee.ca",
     address: "Prairie Sky Integrative Health\n2146 Robinson St, Regina, SK S4T 2P7",
   },
   hours: [

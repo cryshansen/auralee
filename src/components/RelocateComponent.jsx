@@ -1,8 +1,10 @@
 import React, {useState , useEffect} from 'react';
+import BookingModal from './BookingModal';
 
 
 export default function RelocateComponent() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showBookingModal, setShowBookingModal] = useState(false);
  const [isMapLoading, setIsMapLoading] = useState(true); // Local loading state
  const api_key="AIzaSyARwoHfwrESwOLdt_gEAkSutmQVifgMoxc";
  //"Prairie Sky Integrative Health, 2146 Robinson St, Regina, Sk S4T 2P7";const address = "Prairie Sky Integrative Health, 2146 Robinson St, Regina, Sk S4T 2P7";
@@ -77,16 +79,16 @@ const mapBoxStyle = {
                   <span className="label olive">Important Update</span>
                   <h2>We’ve Moved & Rebranded</h2>
                   <p className="pb-4" >
-                      <strong className="turquois">Zackly-Rite Massage Therapy</strong> is now  
-                      <strong className="turquois">  Aura-Lee Massage Therapy</strong>. 
+                      <strong className="turquois">Aura-Lee Massage Therapy</strong> is now
+                      <strong className="turquois"> Aura-Lee Massage Therapy</strong>.
                   </p>
                   <p className="description pb-4">
                       We have officially relocated from Esterhazy, SK to our new professional clinic in <strong>Regina, SK</strong>. 
                       While our name and location have changed, our commitment to your wellness remains the same.
                   </p>
                   <div className="action-items">
-                      <a href="#booking-section" className="btn-primary">Book at New Location</a>
-                      <button 
+                      <button className="btn-primary" onClick={() => setShowBookingModal(true)}>Book at New Location</button>
+                      <button
                           onClick={() => setIsModalOpen(true)}
                           className="btn-secondary turquoise olive"
                         >
@@ -96,6 +98,7 @@ const mapBoxStyle = {
               </div>
           </div>
       </section>
+      <BookingModal show={showBookingModal} onClose={() => setShowBookingModal(false)} />
       {/* --- MODAL OVERLAY --- */}
       {isModalOpen && (
         <div className="modal-overlay" onClick={() => setIsModalOpen(false)} style={modalOverlayStyle}>
