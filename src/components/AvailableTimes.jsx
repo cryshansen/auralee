@@ -10,7 +10,6 @@ export default function AvailableTimes() {
   const [formattedDate, setFormattedDate] = useState("");
   const [bdate, setBdate] = useState("");
   const navigate = useNavigate();
-  const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
   const { showLoader, hideLoader } = useLoading();
 
@@ -29,7 +28,7 @@ export default function AvailableTimes() {
     setFormattedDate(displayDate);
 
     // Fetch booked slots for this date so we can disable them
-    fetch(`${baseUrl}/api/appoint/day/${date}`, { credentials: "include" })
+    fetch(`/api/appoint/day/${date}`, { credentials: "include" })
       .then(res => res.ok ? res.json() : [])
       .then(appts => {
         const times = (Array.isArray(appts) ? appts : []).map(a => a.timeslot?.slice(0, 5));

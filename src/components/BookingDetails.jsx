@@ -19,7 +19,6 @@ export default function BookingDetails() {
   const bdate = searchParams.get("bdate") || "";
   const time = searchParams.get("time") || "";
   const cotoken = searchParams.get("cotoken") || "";
-  const baseUrl = import.meta.env.VITE_API_BASE_URL;
   const {
     register,
     handleSubmit,
@@ -52,7 +51,7 @@ export default function BookingDetails() {
       serviceName: "",
     };
 
-    fetch(`${baseUrl}/api/appoint/request`, {
+    fetch(`/api/appoint/request`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
