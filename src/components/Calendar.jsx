@@ -5,7 +5,8 @@ import "./calendar.css";
 
 
 
-export default function Calendar() {
+// onDateSelect: optional callback(dateStr) used by modal; without it, navigates to /available
+export default function Calendar({ onDateSelect }) {
   const today = new Date();
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
@@ -18,14 +19,13 @@ export default function Calendar() {
   ];
   
   const yearRange = Array.from({ length: 2 }, (_, i) => today.getFullYear() + i);
-  const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
     const year = currentYear;
     const month = currentMonth + 1;
 
     const monthStr = `${year}-${String(month).padStart(2, "0")}`;
-    fetch(`${baseUrl}/api/appoint/month/${monthStr}`, { credentials: "include" })
+    fetch(`/api/appoint/month/${monthStr}`, { credentials: "include" })
       .then(res => res.ok ? res.json() : [])
       .then(dates => {
         // Backend returns Set<String> of date strings — convert to count map (1 per date)
@@ -42,7 +42,11 @@ export default function Calendar() {
   const handleDayClick = (day, month, year) => {
     const dateStr = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
     setSelectedDate(dateStr);
-    navigate(`/available?bdate=${dateStr}`);
+    if (onDateSelect) {
+      onDateSelect(dateStr);
+    } else {
+      navigate(`/available?bdate=${dateStr}`);
+    }
   };
 
   const renderCalendarDays = () => {

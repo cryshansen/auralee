@@ -1,15 +1,19 @@
+import { useSiteContent } from "../context/SiteContentContext";
+
 export default function CancelationPolicy() {
+  const { contact } = useSiteContent();
+  const phone = contact?.phone ?? "306 745-9085";
+  const email = contact?.email ?? "aura.zack@gmail.com";
+
   return (
     <>
-
         <section className="mt-5">
             <div className="row justify-content-around" style={{ display:'flex', flexDirection:'row', justifyContent:'center', fontSize:'35px' }}>
                 <div className="col-md-6 text-center">
-                    <h4 className="turquois "><i className="fas fa-phone-alt"></i> 306 745-9085 call or text.</h4>
+                    <h4 className="turquois"><i className="fas fa-phone-alt"></i> {phone} call or text.</h4>
                 </div>
-                
                 <div className="col-md-6 text-center">
-                    <h4 className="turquois "><i className="fas fa-envelope"></i> aura.zack@gmail.com</h4>
+                    <h4 className="turquois"><i className="fas fa-envelope"></i> {email}</h4>
                 </div>
             </div>
         </section>

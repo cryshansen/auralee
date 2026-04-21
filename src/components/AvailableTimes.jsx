@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useLoading } from "../context/LoadingContext";
+import { useSiteContent } from "../context/SiteContentContext";
 import "./available-times.css"; // custom styling if needed
 
 export default function AvailableTimes() {
+  const { availableTimes: atConfig } = useSiteContent();
+  const enabledSlots = (atConfig?.slots ?? []).filter(s => s.enabled);
   const [searchParams] = useSearchParams();
   const [availableTimes, setAvailableTimes] = useState([]);
   const [selectedTime, setSelectedTime] = useState("");
@@ -64,34 +67,34 @@ export default function AvailableTimes() {
 
         <p>Morning</p>
         <div className="row">
-          {["09:00", "10:00","11:00"].map((time, i) => (
-            <div className="col-sm-2" key={time}>
+          {enabledSlots.filter(s => parseInt(s.value) < 12).map((s, i) => (
+            <div className="col-sm-2" key={s.value}>
               <input
                 type="radio"
-                id={`control_0${i + 1}`}
+                id={`control_m${i}`}
                 name="select"
-                value={time}
-                disabled={availableTimes.includes(time)}
-                onChange={() => setSelectedTime(time)}
+                value={s.value}
+                disabled={availableTimes.includes(s.value)}
+                onChange={() => setSelectedTime(s.value)}
               />
-              <label htmlFor={`control_0${i + 1}`}>{time}</label>
+              <label htmlFor={`control_m${i}`}>{s.label}</label>
             </div>
           ))}
         </div>
 
         <p>Afternoon</p>
         <div className="row">
-          {["13:00", "14:00","15:00", "16:00", "17:00"].map((time, i) => (
-            <div className="col-sm-2" key={time}>
+          {enabledSlots.filter(s => parseInt(s.value) >= 12).map((s, i) => (
+            <div className="col-sm-2" key={s.value}>
               <input
                 type="radio"
-                id={`control_0${i + 3}`}
+                id={`control_a${i}`}
                 name="select"
-                value={time}
-                disabled={availableTimes.includes(time)}
-                onChange={() => setSelectedTime(time)}
+                value={s.value}
+                disabled={availableTimes.includes(s.value)}
+                onChange={() => setSelectedTime(s.value)}
               />
-              <label htmlFor={`control_0${i + 3}`}>{time}</label>
+              <label htmlFor={`control_a${i}`}>{s.label}</label>
             </div>
           ))}
         </div>
