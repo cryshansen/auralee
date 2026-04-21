@@ -1,0 +1,114 @@
+
+
+
+section {
+  display: flex;
+  flex-flow: row wrap;
+}
+section > div {
+  flex: 1;
+  padding: 0.5rem;
+}
+
+.content_bod >.row{
+  margin-left: 0px;
+}
+
+
+input[type="radio"] {
+  display: none;
+}
+input[type="radio"]:not(:disabled) ~ label {
+    cursor: pointer;
+  }
+input[type="radio"]:disabled ~ label {
+    color: hsla(150, 5%, 75%, 1);
+    border-color: hsla(150, 5%, 75%, 1);
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+
+label {
+  /*height: 100%;*/
+  display: block;
+  background: white;
+  border: 2px solid hsla(66, 47%, 65%, 1);
+  border-radius: 20px;
+  padding: .25rem;
+  margin-bottom: 1rem;
+  /*margin: 1rem;*/
+  text-align: center;
+  box-shadow: 0px 3px 10px -2px hsla(66, 47%, 65%, 0.5);
+  position: relative;
+}
+.taken{
+    color:#caccb8;
+    border: 2px solid hsla(66, 16%, 76%, 1);
+    cursor: not-allowed;
+}
+.center{
+    margin:0px auto;
+    
+}
+input[type="radio"]:checked + label {
+  background: hsla(66, 47%, 65%, 1);
+  color: hsla(215, 0%, 100%, 1);
+  box-shadow: 0px 0px 20px hsla(66, 47%, 65%, 0.75);
+  }
+input[type="radio"]:checked + label:after {
+    color: hsla(215, 5%, 25%, 1);
+    font-family: FontAwesome;
+    border: 2px solid hsla(66, 47%, 65%, 1);
+    content: "\f00c";
+    /*font-size: 24px;*/
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 25px;
+    width: 25px;
+   /* line-height: 50px;*/
+    text-align: center;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0px 2px 5px -2px hsla(0, 0%, 0%, 0.25);
+  }
+
+input[type="radio"]#control_05:checked + label {
+  background: #c7cf7a;
+  border-color: #c7cf7a;
+}
+p {
+  font-weight: 900;
+  margin: 5px;
+}
+
+.heading {
+    font-family: 'Montserrat', sans-serif;
+     text-transform: uppercase;
+    font-size: 5rem;
+    margin-bottom:0;
+
+}
+.heading2 {
+    font-family: 'Playfair', sans-serif;
+     text-transform: lowercase;
+    font-size: 3rem;
+    margin-bottom:1rem;
+
+}
+.nameblock {
+    float: right;
+    margin: 80px;
+}
+.turquois{ color: #2e9083; }
+.olive {
+    color: #a2ab4e;
+}
+
+
+@media only screen and (max-width: 700px) {
+  section {
+    flex-direction: column;
+  }
+}
