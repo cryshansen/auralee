@@ -1,9 +1,7 @@
-<<<<<<< HEAD
-=======
+
 
 # auralee.ca
 
->>>>>>> 5438d79
 # Zackly-Rite Appointment Booking App
 
 This is a single-page React application designed for booking appointments with Zackly-Rite Massage Therapy. It allows users to select a date, view available time slots in real-time, and submit their contact details securely as a seamless end-to-end flow for scheduling service.  It features a dynamic calendar interface to select available dates, retrieves real-time booked time slots from a PHP-based backend via RESTful API, and prevents double-booking through conditional slot disabling. The app uses react-router-dom for navigation, react-hook-form combined with Yup for schema-based form validation, and integrates Google reCAPTCHA v2 with a custom React hook for bot prevention. Additionally, it leverages React Helmet for managing page metadata, improving SEO and accessibility. Built with modular components and .env configuration for endpoint flexibility, the app is optimized for deployment in modern front-end stacks.
@@ -71,7 +69,4 @@ This is a single-page React application designed for booking appointments with Z
  Admin dashboard for managing bookings
 
  Dark mode toggle# auralee.ca
-<<<<<<< HEAD
-=======
 
->>>>>>> 5438d79
