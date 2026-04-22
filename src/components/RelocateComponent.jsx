@@ -79,7 +79,7 @@ const mapBoxStyle = {
                   <span className="label olive">Important Update</span>
                   <h2>We’ve Moved & Rebranded</h2>
                   <p className="pb-4" >
-                      <strong className="turquois">Aura-Lee Massage Therapy</strong> is now
+                      <strong className="turquois">Zackly-Rite Massage Therapy</strong> is now
                       <strong className="turquois"> Aura-Lee Massage Therapy</strong>.
                   </p>
                   <p className="description pb-4">
@@ -87,7 +87,7 @@ const mapBoxStyle = {
                       While our name and location have changed, our commitment to your wellness remains the same.
                   </p>
                   <div className="action-items">
-                      <button className="btn-primary" onClick={() => setShowBookingModal(true)}>Book at New Location</button>
+                      <button className="btn-primary" onClick={() => setShowBookingModal(true)}>Book a Session</button>
                       <button
                           onClick={() => setIsModalOpen(true)}
                           className="btn-secondary turquoise olive"
