@@ -14,8 +14,14 @@ export default function AvailableTimes() {
   const [bdate, setBdate] = useState("");
   const navigate = useNavigate();
 
-  const enabledSlots = getSlotsForDay(dayNameFromDate(bdate), hours, atConfig)
-    .filter(s => s.enabled);
+  const dayName = dayNameFromDate(bdate);
+  const allSlots = getSlotsForDay(dayName, hours, atConfig);
+  const enabledSlots = allSlots.filter(s => s.enabled);
+  console.log("[AvailableTimes] bdate:", bdate, "dayName:", dayName);
+  console.log("[AvailableTimes] hours:", JSON.stringify(hours));
+  console.log("[AvailableTimes] atConfig:", JSON.stringify(atConfig));
+  console.log("[AvailableTimes] allSlots:", JSON.stringify(allSlots));
+  console.log("[AvailableTimes] enabledSlots:", JSON.stringify(enabledSlots));
 
   const { showLoader, hideLoader } = useLoading();
 

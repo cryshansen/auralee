@@ -89,7 +89,13 @@ export default function BookingModal({ show, onClose }) {
   const isCalendar = step === "calendar";
   const isDone     = step === "done";
 
-  const enabledSlots   = getSlotsForDay(dayNameFromDate(pickedDate), hours, availableTimes).filter(s => s.enabled);
+  const enabledSlots = getSlotsForDay(dayNameFromDate(pickedDate), hours, availableTimes).filter(s => s.enabled);
+  if (pickedDate) {
+    console.log("[BookingModal] pickedDate:", pickedDate, "day:", dayNameFromDate(pickedDate));
+    console.log("[BookingModal] hours:", JSON.stringify(hours));
+    console.log("[BookingModal] availableTimes:", JSON.stringify(availableTimes));
+    console.log("[BookingModal] enabledSlots:", JSON.stringify(enabledSlots));
+  }
   const morningSlots   = enabledSlots.filter(s => parseInt(s.value) < 12);
   const afternoonSlots = enabledSlots.filter(s => parseInt(s.value) >= 12);
 

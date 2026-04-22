@@ -85,10 +85,20 @@ export function SiteContentProvider({ children }) {
     fetch("/api/public/landing")
       .then(res => (res.ok ? res.json() : null))
       .then(data => {
+        console.log("[SiteContent] raw API response:", JSON.stringify(data, null, 2));
         const page = data?.data?.page;
-        if (page) setSiteContent(merge(DEFAULT, page));
+        if (page) {
+          const merged = merge(DEFAULT, page);
+          console.log("[SiteContent] merged hours:", JSON.stringify(merged.hours));
+          console.log("[SiteContent] merged availableTimes:", JSON.stringify(merged.availableTimes));
+          setSiteContent(merged);
+        } else {
+          console.warn("[SiteContent] no page in response, using defaults");
+          console.log("[SiteContent] default hours:", JSON.stringify(DEFAULT.hours));
+          console.log("[SiteContent] default availableTimes:", JSON.stringify(DEFAULT.availableTimes));
+        }
       })
-      .catch(() => {}); // keep defaults on any network/parse error
+      .catch(err => console.error("[SiteContent] fetch error:", err));
   }, []);
 
   return (
