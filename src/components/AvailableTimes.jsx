@@ -2,17 +2,20 @@ import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useLoading } from "../context/LoadingContext";
 import { useSiteContent } from "../context/SiteContentContext";
+import { getSlotsForDay, dayNameFromDate } from "../config/slotUtils";
 import "./available-times.css"; // custom styling if needed
 
 export default function AvailableTimes() {
-  const { availableTimes: atConfig } = useSiteContent();
-  const enabledSlots = (atConfig?.slots ?? []).filter(s => s.enabled);
+  const { availableTimes: atConfig, hours } = useSiteContent();
   const [searchParams] = useSearchParams();
-  const [availableTimes, setAvailableTimes] = useState([]);
+  const [bookedTimes, setBookedTimes] = useState([]);
   const [selectedTime, setSelectedTime] = useState("");
   const [formattedDate, setFormattedDate] = useState("");
   const [bdate, setBdate] = useState("");
   const navigate = useNavigate();
+
+  const enabledSlots = getSlotsForDay(dayNameFromDate(bdate), hours, atConfig)
+    .filter(s => s.enabled);
 
   const { showLoader, hideLoader } = useLoading();
 
@@ -35,9 +38,9 @@ export default function AvailableTimes() {
       .then(res => res.ok ? res.json() : [])
       .then(appts => {
         const times = (Array.isArray(appts) ? appts : []).map(a => a.timeslot?.slice(0, 5));
-        setAvailableTimes(times);
+        setBookedTimes(times);
       })
-      .catch(() => setAvailableTimes([]))
+      .catch(() => setBookedTimes([]))
       .finally(() => hideLoader());
 
     }, [searchParams]);
@@ -74,7 +77,7 @@ export default function AvailableTimes() {
                 id={`control_m${i}`}
                 name="select"
                 value={s.value}
-                disabled={availableTimes.includes(s.value)}
+                disabled={bookedTimes.includes(s.value)}
                 onChange={() => setSelectedTime(s.value)}
               />
               <label htmlFor={`control_m${i}`}>{s.label}</label>
@@ -91,7 +94,7 @@ export default function AvailableTimes() {
                 id={`control_a${i}`}
                 name="select"
                 value={s.value}
-                disabled={availableTimes.includes(s.value)}
+                disabled={bookedTimes.includes(s.value)}
                 onChange={() => setSelectedTime(s.value)}
               />
               <label htmlFor={`control_a${i}`}>{s.label}</label>

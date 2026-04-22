@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import Calendar from "./Calendar";
 import { useSiteContent } from "../context/SiteContentContext";
+import { getSlotsForDay, dayNameFromDate } from "../config/slotUtils";
 
 const OLIVE     = "#a2ab4e";
 const TURQUOISE = "#2e9083";
 
 export default function BookingModal({ show, onClose }) {
-  const { availableTimes } = useSiteContent();
-  const enabledSlots = (availableTimes?.slots ?? []).filter(s => s.enabled);
+  const { availableTimes, hours } = useSiteContent();
 
   const [step, setStep]           = useState("calendar"); // "calendar" | "form" | "done"
   const [pickedDate, setPickedDate] = useState("");
@@ -89,6 +89,7 @@ export default function BookingModal({ show, onClose }) {
   const isCalendar = step === "calendar";
   const isDone     = step === "done";
 
+  const enabledSlots   = getSlotsForDay(dayNameFromDate(pickedDate), hours, availableTimes).filter(s => s.enabled);
   const morningSlots   = enabledSlots.filter(s => parseInt(s.value) < 12);
   const afternoonSlots = enabledSlots.filter(s => parseInt(s.value) >= 12);
 
