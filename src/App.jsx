@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import './App.css'
 import Header from './components/Header';
@@ -43,6 +43,7 @@ function App() {
           <Route path="/available" element={<AvailableTimes />} />
           <Route path="/booking" element={<BookingDetails />} />
           <Route path="/confirmation" element={<BookingConfirmation />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
       <Footer />
